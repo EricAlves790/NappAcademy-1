@@ -1,4 +1,5 @@
-from MyHolidays.myholidays.holidays import MyCalendar
+from semana5.MyHolidays.myholidays.holidays import MyCalendar
+
 from datetime import date
 import pytest
 
@@ -35,8 +36,9 @@ class TestMyCalendar:
         Testar se o construtor recebe tanto objetos dates quanto
         strings no formato dd/MM/aaaa
         """
-        objeto = MyCalendar(dt1, dt2)
+        objeto = MyCalendar(dt1, dt2, tamanho_lista)
         assert len(objeto.datas) == tamanho_lista
+        print(objeto.datas)
         assert isinstance(objeto.datas[0], date)
 
     def test_receive_bad_formatted_strings(self):
@@ -74,6 +76,7 @@ class TestMyCalendar:
         dt3 = '15/03/2021'
         objeto = MyCalendar(dt1, dt2)
         objeto.add_holiday(dt3)
+        print(objeto.datas)
         assert len(objeto.datas) == 3
         assert isinstance(objeto.datas[0], date)
         assert isinstance(objeto.datas[1], date)
@@ -128,7 +131,11 @@ class TestMyCalendar:
         objeto.add_holiday(dt1, dt2)
         objeto.add_holiday(dt1, dt2)
         objeto.add_holiday(dt1, dt3)
+        print(objeto.datas)
+        print(len(objeto.datas))
         objeto.add_holiday(dt4)
+        print(objeto.datas)
+        print(len(objeto.datas))
         assert len(objeto.datas) == 4
 
     def test_method_add_holiday_5(self):
@@ -155,6 +162,7 @@ class TestMyCalendar:
         dt4 = date(2021, 4, 15)
         dt5 = '15/05/2021'
         objeto = MyCalendar(dt1, dt2, dt3)
+        print(objeto.check_holiday(dt1))
         assert objeto.check_holiday(dt1) is True
         assert objeto.check_holiday(dt2) is True
         assert objeto.check_holiday(dt1) is True
